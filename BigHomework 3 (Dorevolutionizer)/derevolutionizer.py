@@ -17,6 +17,9 @@ class Derevolutionizer():
         self.vowels = 'аиуеоыиоэюяёѣй'
         self.before_vowel = re.compile('(и)(['+self.vowels+'])')
         self.cyril_text = re.compile('[а-яА-ЯёЁ]+')
+##        self.retag = re.compile('<.*?>', re.DOTALL)
+##        self.rescript = re.compile('<script.*?>.*?</script>', re.DOTALL)
+##        self.restyle = re.compile('<style.*?>.*?</style>', re.DOTALL)
 
     def derevolutionize(self, lemma):
         if lemma in self.dictionary:
@@ -34,6 +37,7 @@ class Derevolutionizer():
         return form
 
     def sfpl(self, analysed_token):
+##        print(analysed_token)
         if 'analysis' in analysed_token and analysed_token['analysis']:
             lemma = analysed_token['analysis'][0]['lex']
             gr = analysed_token['analysis'][0]['gr']
@@ -64,13 +68,16 @@ class Derevolutionizer():
         with open(self.input_path,'w',encoding='utf-8') as f:
             f.write(text)
         command = self.mystem_path+' -i -c -d --format json '+self.input_path+' '+self.output_path
+        print(command)
         os.system(command)
         with open ('parsed.json','r',encoding='utf-8') as f:
             for line in f:
                 parsed += json.loads(line)            
+##        print('analysis performed: '+text)
         for i in range(len(parsed)):
             token = parsed[i]['text'].lower()
             if 'analysis' in parsed[i] and parsed[i]['analysis']:
+##                print(parsed[i])
                 lemma = parsed[i]['analysis'][0]['lex']
                 gr = parsed[i]['analysis'][0]['gr']
                 dorev_lemma = self.derevolutionize(lemma)
@@ -96,6 +103,7 @@ class Derevolutionizer():
                     token = token[:-1]+'ѣ'
                 elif (gr.startswith('A') or (gr.startswith('V') and 'прич' in gr)) and ('мн' in gr)\
                      and ((i>1 and self.sfpl(parsed[i-2]))or (i<len(parsed)-2 and self.sfpl(parsed[i+2]))):
+##                    print(token)
                     if token.endswith('е'):
                         token = token[:-1]+'я'
                     elif token.endswith('иеся'):
@@ -114,6 +122,9 @@ class Derevolutionizer():
         except:
             succeed_to_open = False
         if succeed_to_open:
+##            derevol_page = re.sub(self.rescript, '', derevol_page)
+##            derevol_page = re.sub(self.restyle, '', derevol_page)
+##            derevol_page = re.sub(self.retag, '', derevol_page)
             derevol_page = ','.join(re.findall(self.cyril_text,derevol_page))
             derevol_page = self.derevolutionize_text(derevol_page)
             topten = self.get_topten(derevol_page.split(','))
