@@ -1,0 +1,11 @@
+.el-red{background-color: red;}
+.el-green{background-color: green;}
+.el-blue{background-color: blue;}
+.el-bisque{background-color: bisque;}
+.el-aquamarine{background-color: aquamarine;}
+.el-yellow{background-color: yellow; border-style: outset;}
+.el-magenta{background-color: magenta;}
+.el-beige{background-color: beige;}
+.el-mistyrose{background-color: #ffe4e1;}
+.tophead{background: linear-gradient(to bottom, #ffe4c4 0%, #ffe4e1 100%);}
+.weather{background-color: beige; text-align: center;}

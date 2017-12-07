@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<!--<link href="{{url_for('static', filename='elem-styles.css')}}" rel="stylesheet"/>-->
+	<link href="../static/elem-styles.css" rel="stylesheet"/>
+	<title>Дорѣволюцiонизаторъ</title>
+	<div class="container">
+	<div class="row tophead">
+	    <h1>Дорѣволюцiонизаторъ</h1>
+	</div>
+	<div class="row">
+	    <div class="col-md-2 el-yellow">
+		<a link href="/">Главная</a>
+		</div>
+		<div class="col-md-2 el-yellow">
+		<a link href="/test">Провѣрь себя!</a>
+		</div>
+		<div class="col-md-2 el-yellow">
+		<a link href="/analysis">Анализировать страницу</a>
+		</div>
+		<div class="col-md-2 el-yellow">
+		</div>
+		<div class="col-md-2 el-yellow">
+		</div>
+		<div class="col-md-2 el-yellow">
+		</div>
+	</div>
+	</div>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+	    <div class="col-md-2 el-aquamarine">Реклама партнеров</div>
+		<div class="col-md-8 el-beige">
+		    <form>
+			    {% for i in questions %}
+				    <p>Какъ правильно?</p>
+					<p><input name="{{i[2]}}" type = "radio" value = "{{ i[0]['value'] }}">{{ i[0]['option'] }}</p>
+					<p><input name="{{i[2]}}" type = "radio" value = "{{ i[1]['value'] }}">{{ i[1]['option'] }}</p>
+				{% endfor %}
+				<p><input type="submit" value="Готово"></p>
+			</form>
+		</div>
+		<div class="col-md-2 el-aquamarine">
+		    <a href="https://clck.yandex.ru/redir/dtype=stred/pid=7/cid=1228/*https://yandex.ru/pogoda/10463" target="_blank"><img src="https://info.weather.yandex.net/10463/4_white.ru.png?domain=ru" border="0" alt="Яндекс.Погода"/><img width="1" height="1" src="https://clck.yandex.ru/click/dtype=stred/pid=7/cid=1227/*https://img.yandex.ru/i/pix.gif" alt="" border="0"/></a>	
+		</div>
+	</div>
+	<div class="row">
+	    <div class="col-md-2 el-aquamarine">
+		    <p>Видео: Даже Князев не может произнести этот звук!</p>
+			<p><a href="http://jigsaw.w3.org/css-validator/check/referer">
+            <img style="border:0;width:88px;height:31px"
+            src="http://jigsaw.w3.org/css-validator/images/vcss"
+            alt="Правильный CSS!" /></a></p>
+		</div>
+		<div class="col-md-8 el-beige"></div>
+		<div class="col-md-2 el-aquamarine">Как увеличить свой накоп за 15 сек? Рассказывает...</div>
+	</div>
+	<div class="row el-magenta">
+	    nik-skywalker, 2017. This site uses Yandex Mystem technology.
+	</div>
+</div>
+</body>
+</html>

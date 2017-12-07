@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+	<!--<link href="{{url_for('static', filename='styles.css')}}" rel="stylesheet"/>-->
+	<link href="../static/styles.css" rel="stylesheet"/>
+    <title>Анкета: исследование дискурса</title>
+</head>
+<div class = "anket">
+<h1>Добро пожаловать!</h1>
+<form>
+    {% for i in soc_params %}
+	    <p><b>{{ i['question'] }}</b></p>
+		{% if i['ans'] == 't' %}
+		    <p><input name = "{{ i['param'] }}" type = "text"></p>
+		{% else %}
+		    {% for j in i['ans'] %}
+			    <p><input name="{{ i['param'] }}" type = "radio" value = "{{ j }}">{{ j }}</p>
+			{% endfor %}
+		{% endif %}
+	{% endfor %}
+    {% for i in questions %}
+	    <p><b>{{ i['question'] }}</b></p>
+		{% for j in i['variants'] %}
+		    <p><input name="{{ i['type'] }}" type = "radio" value = "{{ j }}">{{ j }}</p>
+		{% endfor %}
+	{% endfor %}
+<p><input type="submit" value="Готово"></p>
+</div>
+</form>
+</form>
+<body>
+</body>
+</html>

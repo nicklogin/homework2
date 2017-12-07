@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <style>
+	    table, th, td {
+		border-style: solid;
+		border-width: 2px;
+		border-color: black;
+		}
+	</style>
+    <meta charset="UTF-8">
+	<!--<link href="{{url_for('static', filename='styles.css')}}" rel="stylesheet"/>-->
+	<link href="../static/styles.css" rel="stylesheet"/>
+    <title>Анкета: исследование дискурса</title>
+</head>
+<body>
+<div class = "anket">
+<p>Числовые характеристики выборки:</p>
+</div>
+<table style="width:100%">
+    <tr>
+	    <th>Характеристика</th>
+		<th>Количество данных</th>
+		<th>Среднее значение</th>
+		<th>Ср. гармоническое</th>
+		<th>Медиана</th>
+		<th>Стандартное отклонение</th>
+		<th>Дисперсия</th>
+	</tr>
+	{% for i in rowchars %}
+	<tr>
+	    <th>{{ i['name'] }}</th>
+		<th>{{ i['q'] }}</th>
+		<th>{{ i['mean'] }}</th>
+		<th>{{ i['harm'] }}</th>
+		<th>{{ i['median'] }}</th>
+		<th>{{ i['dev'] }}</th>
+		<th>{{ i['var'] }}</th>
+	</tr>
+	{% endfor %}
+</table>
+<div class="anket">
+<p>Результаты исследования в диаграммах:</p>
+</div>
+<div class="centr">
+{% for i in pictures %}
+<p>{{ i[0] }}:</p>
+<p><img src="../static/{{ i[1] }}" alt="pie chart"></p>
+{% endfor %}
+</div>
+</body>
+</html>

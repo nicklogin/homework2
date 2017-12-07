@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <style>
+	    table, th, td {
+		border-style: solid;
+		border-width: 2px;
+		border-color: black;
+		}
+	</style>
+    <meta charset="UTF-8">
+	<!--<link href="{{url_for('static', filename='styles.css')}}" rel="stylesheet"/>-->
+	<link href="../static/styles.css" rel="stylesheet"/>
+    <title>Анкета: исследование дискурса</title>
+</head>
+<body>
+<div class = "anket">
+<p><a link href="/search">Назад к поиску</a> <a link href="/stats">Статистика</a> <a link href="/json">json</a></p>
+</div>
+<div class="results-table">
+<table style="width:100%">
+    <tr>
+	    {% for i in fields %}
+		<th>{{ i }}</th>
+		{% endfor %}
+	</tr>
+	{% for i in selection %}
+	<tr>{% for j in fields %}
+	    <th>{{ i[j] }}</th>
+		{% endfor %}
+	</tr>
+	{% endfor %}
+</table>
+</div>
+</body>
+</html>
