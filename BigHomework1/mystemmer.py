@@ -1,7 +1,8 @@
 import os
 
 def mystemmize(dirpath, xmldirname, plaindirname):
-    '''dirpath - path to dir with files need mystemming(needs to be within the dir with module,
+    '''dirpath - path to dir with files need mystemming(all input .txt files need to be in the same dir with module and
+at least 2 levels deeper  - this was done intentionally to avoid non-ascii paths in the current case),
 xmldirname - name for dir with mystemmed xml files, plaindirname -
 name for dir with mystemmed txt files; both output dirs will be located in the
 same directory as the input dir. Mystem must be located in the same dir with mystemmer module'''
