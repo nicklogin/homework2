@@ -22,7 +22,7 @@ def get_weather():
         for i in (retime, retemp, recond, refeels, reyest, rewind, repress, rehum):
             x = re.sub('<.*?>','',re.search(i, Scopie_weather).group(0))
             x = re.sub('([0-9+-][0-9-%°:,^]+)',' \\1',x)
-            print(x)
+##            print(x)
             output.append(x)
 
         output = '<p>Погода в Скопье:</p><p>'+'</p><p>'.join(output)+'</p><p><a href="'+urlad+'">Источник</a></p>'
