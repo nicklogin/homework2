@@ -61,16 +61,16 @@ class anketetext():
 
     def generate_questions(self,varlist,questionlist):
         with open (varlist,'r', encoding='utf-8') as x:
-            self.ling_vars = json.load(x)
+            vars = json.load(x)
         qtreeroot = ET.parse(questionlist).getroot()
         questions = []
         for i in qtreeroot:
             d = dict()
             d['question'] = i.text.strip()
             d['type'] = i.attrib['lingvar']+'_'+i.attrib['context']
-            d['variants'] = self.ling_vars[i.attrib['lingvar']]
+            d['variants'] = vars[i.attrib['lingvar']]
             questions.append(d)
-        print(questions)
+##        print(questions)
         return questions
 
     def get_responses_list(self):
@@ -135,13 +135,7 @@ def calculate_stats():
                         x.append(int(j[i['param']]))
                     except:
                         x.append(None)
-                intvalues[i['param']] = x   
-            elif i['type'] == 'qual_discr':
-                x = []
-                for j in allresults:
-                    v, l = j[i['param']],i['ans']
-                    x.append((find_index(v, l), v))
-                qual_discr_values[i['param']] = x
+                intvalues[i['param']] = x
         
         numeric_chars = []
         for i in intvalues:
