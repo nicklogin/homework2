@@ -32,7 +32,7 @@ def dorevolutionizer_page(old = old_text, new = new_text):
     if request.args:
         old = request.args['old_text']
         new = dorevolutionizer.derevolutionize_text(request.args['old_text'])
-    return render_template('index1.html', old_text = old, new_text = new, scopie_weather = dorevolutionizer.derevolutionize_text(get_scopie_weather.get_weather()))
+    return render_template('index.html', old_text = old, new_text = new, scopie_weather = dorevolutionizer.derevolutionize_text(get_scopie_weather.get_weather()))
 
 @app.route('/test')
 def test():
