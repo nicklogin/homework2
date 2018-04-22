@@ -54,6 +54,7 @@ def analysis(url0 = 'https://lenta.ru/'):
     if request.args:
         url0 = request.args['asked_url']
     analyzis = dorevolutionizer.analyse_page(url0)
+    print(analyzis)
     return render_template('analysis.html', topten = analyzis['topten'], wordlist = analyzis['words'], asked_url = url0)
 
 if __name__ == '__main__':
