@@ -11,3 +11,8 @@ profiles.json - профили пользователей, писавших по
 
 processed_posts.json - посты с указанием возраста и города автора
 processed_comments.json - комментарии с указанием возраста и города автора
+
+## Telegram bot
+Бот доcтупен как test-and-hw-bot (Username: @TestAndHWBot)
+Сообщения идут с thedeterminer@pythonanywhere.com
+В качестве источника лексики использовался Частотный словарь НКРЯ.
