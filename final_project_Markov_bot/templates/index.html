@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+  <head>
+      <style>
+          .header{
+              text-align: left;
+              color: yellow;
+              background-color: darkblue;
+          }
+          .main-grid{
+              display: grid;
+              grid-template-columns: 20% 60% 20%;
+          }
+          .centerarea{
+              text-align: left;
+          }
+          .chatbox{
+              overflow-y: scroll;
+              word-break: break-all;
+              border: solid;
+              height: 400px;
+              font-family: sans-serif;
+          }
+          .controlpan{
+              background-color: blue;
+          }
+          .leftfield{
+              text-align: left;
+              /* background-color: darkblue; */
+              background-image: url("http://www.kethinov.com/images/startrek/trekpapers/TOS1x13c.png");
+              background-size: contain;
+              color: white;
+          }
+          .rightfield{
+              text-align: right;
+              /* background-color:darkblue; */
+              background-image: url("http://www.kethinov.com/images/startrek/trekpapers/TOS1x13c.png");
+              background-size: contain;
+              color: white;
+          }
+          .footer{
+              text-align: right;
+              background-color:darkblue;
+              color: white;
+          }
+          .mybutton{
+              font-family: sans-serif;
+              font-size: 24pt;
+          }
+      </style>
+    <div class="header">
+        <b>Star Trek bot v. 0.01</b>
+    </div>
+  </head>
+  <body>
+      <!-- <div class="header">
+          <b>Star Trek bot v. 0.01</b>
+      </div> -->
+      <div class="main-grid">
+          <div class="leftfield">
+              <!-- This is the left field. -->
+          </div>
+          <div class="centerarea">
+            <div class="chatbox" id="chat-window">
+                <b>Bot: </b> Greetings from the StarTrek bot! I was trained on the scripts of StarTrek: The original series(1962-1964)
+                using the 3-gram Markov model<br />
+            </div>
+            <div class="controlpan">
+              <!-- <form method="GET" id="messageForm"> -->
+                <textarea cols="40" id="userMessage" name="userMessage" placeholder="Type your message for the bot..."></textarea>
+                <button class="mybutton" onclick="sendMessageToBot()">Send!</button>
+              <!-- </form> -->
+              <script>
+                function sendMessageToBot() {
+                    var usrMessage = document.getElementById("userMessage").value;
+                    document.getElementById("chat-window").innerHTML += "<b>You: </b>"+usrMessage+"<br />";
+                    document.getElementById("userMessage").value = "";
+                    document.getElementById("chat-window").scrollTop = document.getElementById("chat-window").scrollHeight;
+                    // document.getElementById("messageForm").submit();
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("chat-window").innerHTML += "<b>Bot: </b>"+this.responseText+"<br />";
+                            document.getElementById("chat-window").scrollTop = document.getElementById("chat-window").scrollHeight;
+                            // alert(this.responseText);
+                        }
+                    };
+                    xhttp.open("GET","askBot?text="+usrMessage,true);
+                    xhttp.send();
+                    //сначала я просто немного потестил AJAX XHttpRequest:
+                    // xhttp.open("GET","https://www.w3schools.com/xml/demo_get.asp?t=35",true)
+                    // xhttp.send()
+                }
+              </script>
+            </div>
+          </div>
+          <div class="rightfield">
+              <!-- This is the right field. -->
+          </div>
+      </div>
+      <div class="footer">
+          Nikita Login, 2018.<br />
+          This site was created for non-commercial purpose only. The rights to Star Trek: The Original Series belong to CBS Corporation.
+      </div>
+  </body>
+</html>
